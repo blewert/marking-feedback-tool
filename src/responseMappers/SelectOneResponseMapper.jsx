@@ -17,6 +17,9 @@ import { Utilities } from "../Utilities.js";
 
 export default function (field, value) 
 {
+    if(value == null)
+        return "";
+        
     const index = value.index;
     const feedback = field.fieldData.options[index].feedback;
 

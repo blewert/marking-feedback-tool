@@ -11,11 +11,14 @@ import './sass/main.sass';
 //Components
 import { CheckboxField } from './components/fields/CheckboxField.jsx'
 import { SelectOneField, SelectOneFieldMapper } from './components/fields/SelectOneField.jsx';
+import { TextField } from './components/fields/TextField.jsx';
 import { OutputBox } from './components/OutputBox.jsx';
 
 //Response mappers
 import CheckboxResponseMapper from './responseMappers/CheckboxResponseMapper.jsx';
 import SelectOneResponseMapper from './responseMappers/SelectOneResponseMapper.jsx';
+import TextResponseMapper from './responseMappers/TextResponseMapper.jsx';
+import _ from 'lodash';
 
 class App extends React.Component
 {
@@ -29,14 +32,29 @@ class App extends React.Component
 
 		const crgFields = crgData.fields;
 
-		this.state = {
-			formData: { }
-		}
-
 		this.mappers = {
 			"checkbox": CheckboxResponseMapper,
-			"selectOne": SelectOneResponseMapper
+			"selectOne": SelectOneResponseMapper,
+			"text": TextResponseMapper
 		}
+
+		this.state = {
+			formData: {}
+		}
+	}
+
+	generateInitialFormData(fields)
+	{
+		const ctx = this;
+
+		let obj = {};
+
+		for(let field of fields)
+		{
+			obj[field.key] = "";
+		}
+
+		return obj;
 	}
 
 	buildIdentifier(name, index, type)
@@ -63,23 +81,29 @@ class App extends React.Component
 
 	generateFeedback(formData)
 	{
-		let feedback = "";
+		let feedback = [];
 
 		for(let key in formData)
 		{
 			//Find type from key
 			const field = crgData.fields.find(x => x.key == key);
 
+			//Not found? skip it in output
 			if(!field)
+			{
 				continue;
+			}
 
 			const mappedOutput = this.mappers[field.type](field, formData[key]);
 
-			feedback += mappedOutput + " ";
+			feedback.push({ index: field?.index, content: mappedOutput});
 		}
 
-		// return JSON.stringify(formData);
-		return this.filterFeedback(feedback);
+		console.log(feedback);
+
+		let feedbackString = _.sortBy(feedback, ["index"]).map(x => x.content).join(" ");
+
+		return this.filterFeedback(feedbackString);
 	}
 	
 
@@ -90,7 +114,8 @@ class App extends React.Component
 
 		const mappedTypes = {
 			"checkbox": (data, k) => <CheckboxField key={k} title={data.title} {...this.commonProps} identifier={id(data.key, 0, "checkbox")}/>,
-			"selectOne": (data, k) => SelectOneFieldMapper(data, k, this.commonProps, id(data.key, 0, "selectOne"))
+			"selectOne": (data, k) => SelectOneFieldMapper(data, k, this.commonProps, id(data.key, 0, "selectOne")),
+			"text": (data, k) => <TextField key={k} title={data.title} {...this.commonProps} identifier={id(data.key, 0, "text")}/>
 		};
 
 		return crgFields.map((x, i) => mappedTypes[x.type](x, i));
@@ -102,7 +127,7 @@ class App extends React.Component
 
 		return <div>
 			{this.generateFieldsFromCRG()}
-			{/* <SelectOneField title="title" {...this.commonProps} identifier={id("select", 0, "selectOne")} choices={["piss", "shit", "balls"]} /> */}
+			{/* <TextField title="title" {...this.commonProps} identifier={id("textTest", 0, "text")} /> */}
 			<OutputBox output={this.generateFeedback(this.state.formData)}/>
 		</div>
 	}

@@ -6,16 +6,10 @@ export class SelectOneField extends FeedbackField
     constructor() 
     {
         super();
-
-        this.state = {
-            selected: 0
-        }
     }
 
     onFieldPreUpdate(event) 
     {
-        // this.setState({ checked: event.target.checked });
-        // this.props.onUpdate(this.buildOnChangeResponse(event.target.checked));
         const index = event.target.selectedIndex;
         const item = event.target.value;
 
@@ -28,7 +22,6 @@ export class SelectOneField extends FeedbackField
     {
         return <div className="ui checkbox">
             <label>{this.props.title}</label>
-            {/* <<input type="checkbox" checked={this.state.checked} onChange={this.onFieldPreUpdate.bind(this)} />> */}
 
             <select onChange={this.onFieldPreUpdate.bind(this)}>
                 {this.props?.choices?.map((x, i) => <option key={i} value={x}>{x}</option>)}
