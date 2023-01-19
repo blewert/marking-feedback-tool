@@ -37,6 +37,42 @@ export default {
                     ]
                 }
             }
+        },
+
+
+        {
+            "key": "mechanicsAmount",
+            "type": "selectOne",
+            "title": "Amount of mechanics",
+            "fieldData": {
+                "options": [
+                    {
+                        "title": "None implemented",
+                        "feedback": [
+                            "No mechanics have been successfully implemented",
+                            "No additional mechanics are present in the prototype.",
+                            "There are no mechanics implemented in this submission."
+                        ]
+                    },
+
+                    {
+                        "title": "Some implemented, but limited",
+                        "feedback": [
+                            "Some mechanics have been implemented, but these are limited or fundamentally flawed in their implementation",
+                            "Mechanics have been implemented, but these are limited in their implementation.",
+                            "Mechanics are present, but are limited in implementation."
+                        ]
+                    },
+
+                    {
+                        "title": "Many implemented",
+                        "feedback": [
+                            "Many mechanics have been implemented in this build.",
+                            "Several mechanics are present in your copy of the prototype."
+                        ]
+                    }
+                ]
+            }
         }
     ]
 }

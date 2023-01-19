@@ -10,10 +10,12 @@ import './sass/main.sass';
 
 //Components
 import { CheckboxField } from './components/fields/CheckboxField.jsx'
+import { SelectOneField, SelectOneFieldMapper } from './components/fields/SelectOneField.jsx';
 import { OutputBox } from './components/OutputBox.jsx';
 
 //Response mappers
 import CheckboxResponseMapper from './responseMappers/CheckboxResponseMapper.jsx';
+import SelectOneResponseMapper from './responseMappers/SelectOneResponseMapper.jsx';
 
 class App extends React.Component
 {
@@ -32,7 +34,8 @@ class App extends React.Component
 		}
 
 		this.mappers = {
-			"checkbox": CheckboxResponseMapper
+			"checkbox": CheckboxResponseMapper,
+			"selectOne": SelectOneResponseMapper
 		}
 	}
 
@@ -67,6 +70,9 @@ class App extends React.Component
 			//Find type from key
 			const field = crgData.fields.find(x => x.key == key);
 
+			if(!field)
+				continue;
+
 			const mappedOutput = this.mappers[field.type](field, formData[key]);
 
 			feedback += mappedOutput + " ";
@@ -75,6 +81,7 @@ class App extends React.Component
 		// return JSON.stringify(formData);
 		return this.filterFeedback(feedback);
 	}
+	
 
 	generateFieldsFromCRG()
 	{
@@ -82,7 +89,8 @@ class App extends React.Component
 		const id = this.buildIdentifier;
 
 		const mappedTypes = {
-			"checkbox": (data, k) => <CheckboxField key={k} title={data.title} {...this.commonProps} identifier={id(data.key, 0, "checkbox")}/>
+			"checkbox": (data, k) => <CheckboxField key={k} title={data.title} {...this.commonProps} identifier={id(data.key, 0, "checkbox")}/>,
+			"selectOne": (data, k) => SelectOneFieldMapper(data, k, this.commonProps, id(data.key, 0, "selectOne"))
 		};
 
 		return crgFields.map((x, i) => mappedTypes[x.type](x, i));
@@ -90,9 +98,11 @@ class App extends React.Component
 
 	render()
 	{
-		
+		const id = this.buildIdentifier;
+
 		return <div>
 			{this.generateFieldsFromCRG()}
+			{/* <SelectOneField title="title" {...this.commonProps} identifier={id("select", 0, "selectOne")} choices={["piss", "shit", "balls"]} /> */}
 			<OutputBox output={this.generateFeedback(this.state.formData)}/>
 		</div>
 	}
