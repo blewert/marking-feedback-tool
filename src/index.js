@@ -21,6 +21,7 @@ import TextResponseMapper from './responseMappers/TextResponseMapper.jsx';
 import _ from 'lodash';
 import { SelectManyField, SelectManyFieldMapper } from './components/fields/SelectManyField.jsx';
 import SelectManyResponseMapper from './responseMappers/SelectManyResponseMapper.jsx';
+import { CRGGradingTool } from './components/CRGGradingTool.jsx';
 
 class App extends React.Component
 {
@@ -42,7 +43,8 @@ class App extends React.Component
 		}
 
 		this.state = {
-			formData: {}
+			formData: {},
+			marks: []
 		}
 	}
 
@@ -104,7 +106,17 @@ class App extends React.Component
 
 		let feedbackString = _.sortBy(feedback, ["index"]).map(x => x.content).join(" ");
 
-		return this.filterFeedback(feedbackString);
+		let markString = "";
+
+		if (this.state.marks.length == crgData.crg.criteria.length)
+		{
+			const markComponents = this.state.marks.map(x => `(${x.slug}: ${x.mark}%)`);
+			const finalMark = this.state.marks.reduce((a, b) => (a.weightedMark + b.weightedMark));
+
+			markString = `\n\n` + markComponents.join(" + ") + ` = ${finalMark}%`;
+		}
+
+		return this.filterFeedback(feedbackString + markString);
 	}
 	
 
@@ -123,11 +135,17 @@ class App extends React.Component
 		return crgFields.map((x, i) => mappedTypes[x.type](x, i));
 	}
 
+	updateMarks(marks)
+	{
+		this.setState({ marks: marks });
+	}
+
 	render()
 	{
 		const id = this.buildIdentifier;
 
 		return <div>
+			<CRGGradingTool crg={crgData.crg} onChange={this.updateMarks.bind(this)} />
 			{this.generateFieldsFromCRG()}
 			{/* <SelectManyField title="title" {...this.commonProps} identifier={id("textTest", 0, "selectMany")} choices={["abc", "def", "ghi", "jkl"]} /> */}
 			{/* <TextField title="title" {...this.commonProps} identifier={id("textTest", 0, "text")} /> */}

@@ -1,5 +1,24 @@
 
 export default {
+    crg: {
+        criteria: [
+            {
+                "index": 0,
+                "slug": "C1",
+                "name": "Game prototype",
+                "description": "The built prototype",
+                "weighting": 0.6
+            },
+
+            {
+                "index": 1,
+                "slug": "C2",
+                "name": "Documentation",
+                "description": "The documentation.",
+                "weighting": 0.4
+            }
+        ]
+    },
     fields: [
 
         {
@@ -10,6 +29,11 @@ export default {
             "isTemplated": false,
             "fieldData": {
                 "options": [
+                    {
+                        "title": "None",
+                        "feedback": [ "" ]
+                    },
+
                     {
                         "title": "Zip name invalid",
                         "feedback": [
@@ -83,6 +107,13 @@ export default {
             "fieldData": {
                 "options": [
                     {
+                        "title": "Omit output",
+                        "feedback": [
+                            ""
+                        ]
+                    },
+
+                    {
                         "title": "None implemented",
                         "feedback": [
                             "No mechanics have been successfully implemented.",
@@ -124,6 +155,13 @@ export default {
                 ],
                 "joinWord": "or",
                 "options": [
+                    {
+                        "title": "Omit output",
+                        "feedback": [
+                            ""
+                        ]
+                    },
+
                     {
                         "title": "Add more complex mechanics",
                         "feedback": [

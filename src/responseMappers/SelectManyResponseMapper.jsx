@@ -32,6 +32,9 @@ const doFeedbackTemplating = function(field, value, feedback)
 
     const randomTemplate = Utilities.randomSelect(field.fieldData.templateStrings);
 
+    if(feedback == "")
+        return "";
+
     return randomTemplate.replace("$1", feedback);
 }
 
