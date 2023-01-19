@@ -1,6 +1,39 @@
 
 export default {
     fields: [
+
+        {
+            "key": "submissionWarnings",
+            "type": "selectMany",
+            "index": 0.1,
+            "title": "Warnings",
+            "isTemplated": false,
+            "fieldData": {
+                "options": [
+                    {
+                        "title": "Zip name invalid",
+                        "feedback": [
+                            "Your zip name doesn't conform to the submission guidelines."
+                        ]
+                    },
+
+                    {
+                        "title": "Documentation not submitted properly",
+                        "feedback": [
+                            "Your documentation is not supplied in the correct format."
+                        ]
+                    },
+
+                    {
+                        "title": "Video not supplied",
+                        "feedback": [
+                            "A video is not supplied for this submission."
+                        ]
+                    }
+                ]
+            }
+        },
+
         {
             "key": "buildSubmitted",
             "type": "checkbox",
@@ -72,6 +105,39 @@ export default {
                         "feedback": [
                             "Many mechanics have been implemented in this build.",
                             "Several mechanics are present in your copy of the prototype."
+                        ]
+                    }
+                ]
+            }
+        },
+
+        {
+            "key": "mechanicsRecommendations",
+            "type": "selectMany",
+            "index": 3.5,
+            "title": "You could improve your marks by.. ",
+            "isTemplated": true,
+            "fieldData": {
+                "templateStrings": [
+                    "Your marks for this submission could be improved by $1.",
+                    "You could improve your marks by $1."
+                ],
+                "joinWord": "or",
+                "options": [
+                    {
+                        "title": "Add more complex mechanics",
+                        "feedback": [
+                            "adding more complex mechanics",
+                            "adding mechanics with more complexity"
+                        ]
+                    },
+
+                    {
+                        "title": "Implementing a wave spawner",
+                        "feedback": [
+                            "implementing a wave spawner system",
+                            "adding a wave spawner",
+                            "adding enemy waves via a wave spawner"
                         ]
                     }
                 ]

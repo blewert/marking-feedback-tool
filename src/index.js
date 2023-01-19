@@ -19,6 +19,8 @@ import CheckboxResponseMapper from './responseMappers/CheckboxResponseMapper.jsx
 import SelectOneResponseMapper from './responseMappers/SelectOneResponseMapper.jsx';
 import TextResponseMapper from './responseMappers/TextResponseMapper.jsx';
 import _ from 'lodash';
+import { SelectManyField, SelectManyFieldMapper } from './components/fields/SelectManyField.jsx';
+import SelectManyResponseMapper from './responseMappers/SelectManyResponseMapper.jsx';
 
 class App extends React.Component
 {
@@ -35,6 +37,7 @@ class App extends React.Component
 		this.mappers = {
 			"checkbox": CheckboxResponseMapper,
 			"selectOne": SelectOneResponseMapper,
+			"selectMany": SelectManyResponseMapper,
 			"text": TextResponseMapper
 		}
 
@@ -99,8 +102,6 @@ class App extends React.Component
 			feedback.push({ index: field?.index, content: mappedOutput});
 		}
 
-		console.log(feedback);
-
 		let feedbackString = _.sortBy(feedback, ["index"]).map(x => x.content).join(" ");
 
 		return this.filterFeedback(feedbackString);
@@ -115,6 +116,7 @@ class App extends React.Component
 		const mappedTypes = {
 			"checkbox": (data, k) => <CheckboxField key={k} title={data.title} {...this.commonProps} identifier={id(data.key, 0, "checkbox")}/>,
 			"selectOne": (data, k) => SelectOneFieldMapper(data, k, this.commonProps, id(data.key, 0, "selectOne")),
+			"selectMany": (data, k) => SelectManyFieldMapper(data, k, this.commonProps, id(data.key, 0, "selectMany")),
 			"text": (data, k) => <TextField key={k} title={data.title} {...this.commonProps} identifier={id(data.key, 0, "text")}/>
 		};
 
@@ -127,6 +129,7 @@ class App extends React.Component
 
 		return <div>
 			{this.generateFieldsFromCRG()}
+			{/* <SelectManyField title="title" {...this.commonProps} identifier={id("textTest", 0, "selectMany")} choices={["abc", "def", "ghi", "jkl"]} /> */}
 			{/* <TextField title="title" {...this.commonProps} identifier={id("textTest", 0, "text")} /> */}
 			<OutputBox output={this.generateFeedback(this.state.formData)}/>
 		</div>
