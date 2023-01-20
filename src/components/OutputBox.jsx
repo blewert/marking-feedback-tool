@@ -6,7 +6,7 @@ export class OutputBox extends React.Component
     {
         return <div className="output">
             <label>Output</label>
-            <pre>{this.props.output}</pre>
+            <pre contentEditable={true}>{this.props.output}</pre>
         </div>
     }
 }
