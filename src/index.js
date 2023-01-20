@@ -22,6 +22,7 @@ import _ from 'lodash';
 import { SelectManyField, SelectManyFieldMapper } from './components/fields/SelectManyField.jsx';
 import SelectManyResponseMapper from './responseMappers/SelectManyResponseMapper.jsx';
 import { CRGGradingTool } from './components/CRGGradingTool.jsx';
+import { Utilities } from './Utilities.js';
 
 class App extends React.Component
 {
@@ -44,7 +45,11 @@ class App extends React.Component
 
 		this.state = {
 			formData: {},
-			marks: []
+			marks: [],
+			options: {
+				omitMarkInOutput: false,
+				seed: 0
+			}
 		}
 	}
 
@@ -116,6 +121,9 @@ class App extends React.Component
 			markString = `\n\n` + markComponents.join(" + ") + ` = ${finalMark}%`;
 		}
 
+		if (!this.state.options.omitMarkInOutput)
+			markString = "";
+
 		return this.filterFeedback(feedbackString + markString);
 	}
 	
@@ -142,11 +150,46 @@ class App extends React.Component
 		this.setState({ marks: marks });
 	}
 
+	handleRandomSeedClick()
+	{
+		Utilities.randomSeed();
+		
+		this.setState
+		({ 
+			options: {
+				seed: Math.random(),
+				...this.state.options
+			}
+		})
+	}
+
+	handleOmitCheckbox(event)
+	{
+		this.setState({ options: {
+			...this.state.options,
+			omitMarkInOutput: !event.target.checked
+		}})
+	}
+
+	generateFormControls()
+	{
+		return <div className="form-controls">
+			<div className="control">
+				<button onClick={this.handleRandomSeedClick.bind(this)}>Refresh seed</button>
+			</div>
+			<div className="control">
+				<label>Omit mark in output?</label>
+				<input type="checkbox" onChange={this.handleOmitCheckbox.bind(this)} />
+			</div>
+		</div>
+	}
+
 	render()
 	{
 		const id = this.buildIdentifier;
 
 		return <div>
+			{this.generateFormControls()}
 			<CRGGradingTool crg={crgData.crg} onChange={this.updateMarks.bind(this)} />
 			{this.generateFieldsFromCRG()}
 			{/* <SelectManyField title="title" {...this.commonProps} identifier={id("textTest", 0, "selectMany")} choices={["abc", "def", "ghi", "jkl"]} /> */}
