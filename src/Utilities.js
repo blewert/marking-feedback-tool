@@ -20,7 +20,7 @@ export class Utilities
         }
 
         Utilities.rng.seed(Utilities.seed);
-
+        
         return array[Utilities.rng(array.length)];
     }
 }

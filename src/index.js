@@ -3,7 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 //Crg imports
-import crgData from './config/test-crg.jsx'
+// import crgData from './config/test-crg.jsx'
+import crgData from './config/rapid-p2.jsx'
 
 //Sass
 import './sass/main.sass';
@@ -47,7 +48,7 @@ class App extends React.Component
 			formData: {},
 			marks: [],
 			options: {
-				omitMarkInOutput: false,
+				omitMarkInOutput: true,
 				seed: 0
 			}
 		}
