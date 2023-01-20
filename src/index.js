@@ -122,8 +122,10 @@ class App extends React.Component
 
 	generateFieldsFromCRG()
 	{
-		const crgFields = crgData.fields;
+		let crgFields = crgData.fields;
 		const id = this.buildIdentifier;
+
+		crgFields = _.sortBy(crgFields, ['index']);
 
 		const mappedTypes = {
 			"checkbox": (data, k) => <CheckboxField key={k} title={data.title} {...this.commonProps} identifier={id(data.key, 0, "checkbox")}/>,

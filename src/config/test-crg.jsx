@@ -62,14 +62,14 @@ export default {
             "key": "buildSubmitted",
             "type": "checkbox",
             "index": 1,
-            "title": "Has submitted build?",
+            "title": "Has not submitted build?",
             "fieldData": {
                 "generateFeedbackIfChecked": true,
-                "generateFeedbackIfNotChecked": true,
+                "generateFeedbackIfNotChecked": false,
                 "feedback": {
                     "ifChecked": [
-                        "You have submitted a built copy of your prototype.",
-                        "A built copy of your prototype has been supplied in this submission."
+                        "You have not submitted a built copy of your prototype.",
+                        "A built copy of your prototype has not been supplied in this submission."
                     ],
                     "ifNotChecked": [
                         "You have not submitted a built copy of your prototype."
@@ -82,14 +82,14 @@ export default {
             "key": "sourceSubmitted",
             "type": "checkbox",
             "index": 2,
-            "title": "Has submitted source?",
+            "title": "Has not submitted source?",
             "fieldData": {
                 "generateFeedbackIfChecked": true,
-                "generateFeedbackIfNotChecked": true,
+                "generateFeedbackIfNotChecked": false,
                 "feedback": {
                     "ifChecked": [
-                        "You have correctly supplied the source project for this prototype.",
-                        "The source code for this project has been supplied in this submission."
+                        "You have not correctly supplied the source project for this prototype.",
+                        "The source code for this project has not been supplied in this submission."
                     ],
                     "ifNotChecked": [
                         "You have not supplied the source code for your prototype."
