@@ -285,7 +285,7 @@ export default {
                         "title": "Extensive",
                         "feedback": [
                             "It is clear that an extensive amount of effort has been applied in the development of this submission.",
-                            "Great effort has been applied to create this development.",
+                            "Great effort has been applied to create this developed game.",
                             "A great amount of effort has been taken in the design and development of this submission.",
                             "An exceptional level of effort has been applied to the design and development of this submission."
                         ]
