@@ -20,7 +20,7 @@ export class SelectManyField extends FeedbackField
 
     render()
     {
-        return <div className="ui checkbox">
+        return <div className="ui field">
             <label>{this.props.title}</label>
 
             <select title="Hold CTRL to select many, or SHIFT to select a range." multiple onChange={this.onFieldPreUpdate.bind(this)}>

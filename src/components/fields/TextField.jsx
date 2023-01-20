@@ -20,7 +20,7 @@ export class TextField extends FeedbackField
 
     render() 
     {
-        return <div className="ui text">
+        return <div className="ui field">
             <label>{this.props.title}</label>
             <input type="text" value={this.state.text} onChange={this.onFieldPreUpdate.bind(this)} />
         </div>

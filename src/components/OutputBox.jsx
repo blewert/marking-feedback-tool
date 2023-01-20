@@ -4,6 +4,9 @@ export class OutputBox extends React.Component
 {
     render()
     {
-        return <pre>{this.props.output}</pre>;
+        return <div className="output">
+            <label>Output</label>
+            <pre>{this.props.output}</pre>
+        </div>
     }
 }

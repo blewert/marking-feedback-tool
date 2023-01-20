@@ -20,7 +20,7 @@ export class CheckboxField extends FeedbackField
 
     render()
     {
-        return <div className="ui checkbox">
+        return <div className="ui field checkbox">
             <label>{this.props.title}</label>
             <input type="checkbox" checked={this.state.checked} onChange={this.onFieldPreUpdate.bind(this)} />
         </div>

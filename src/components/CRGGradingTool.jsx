@@ -23,6 +23,11 @@ export class CRGGradingTool extends React.Component
         this.props.onChange(this.marks);
     }
 
+    calculateFinalGrade()
+    {
+        return this.marks.reduce((a, b) => a.weightedMark + b.weightedMark);
+    }
+
     render()
     {
         return <div className="crg-grader">
@@ -33,6 +38,12 @@ export class CRGGradingTool extends React.Component
                     <input type="number" min={0} max={100} defaultValue={0} onChange={((event) => this.onPreChange(x, event)).bind(this)} />
                 </div>
             })}
+            <div className="final-grade">
+                <div>
+                    <h1>Final grade</h1>
+                    <h2>{this.calculateFinalGrade()}%</h2>
+                </div>
+            </div>
         </div>
     }
 }

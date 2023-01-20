@@ -1,8 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap')
+
 @import 'common/normalize'
 @import 'common/palette'
+
+@import 'ui/field'
+@import 'ui/crg-grader'
 
 body, html
     margin: 0
     padding: 0
     background-color: $bg-color
     color: $fg-color
+    font-family: "Inter", sans-serif
+
+body
+    padding: 4rem
+
+
+.output
+    margin-top: 5rem
+    color: $fg-color-light-4
+
+    pre
+        color: $fg-color

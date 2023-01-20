@@ -20,7 +20,7 @@ export class SelectOneField extends FeedbackField
 
     render()
     {
-        return <div className="ui checkbox">
+        return <div className="ui field">
             <label>{this.props.title}</label>
 
             <select onChange={this.onFieldPreUpdate.bind(this)}>
