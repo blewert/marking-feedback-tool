@@ -105,8 +105,6 @@ export class CRGEditor extends SerializableEditorField
 
     render()
     {
-        console.log(this.validate());
-
         return <div>
             {this.renderCriteria()}
             <button onClick={this.handleAddNewCriterion.bind(this)}>+</button>

@@ -210,7 +210,10 @@ class App extends React.Component
 	
 	showEditorView()
 	{
-		return <CRGEditor/>;
+		return <div>
+			<h1>CRG editor</h1>
+			<CRGEditor/>
+		</div>
 	}
 
 	render()

@@ -69,7 +69,7 @@ export class CriterionEditorField extends SerializableEditorField
     {
         return <div className="ui editor-field criterion">
             <header>
-                <h1>{this.getTitle()}</h1>
+                <h2>{this.getTitle()}</h2>
                 <div className="collapse-icon" onClick={this.handleCollapseRequest.bind(this)}>{this.getIcon(this.state.collapsed)}</div>
             </header>
             {this.renderCollapsable(this.state.collapsed)}
