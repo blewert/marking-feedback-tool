@@ -45,6 +45,7 @@ export class CriterionEditorField extends SerializableEditorField
             <input type="text"   onChange={(event) => preChange(event, "slug", Utilities.mapEventTargetValue)} placeholder="Slug (e.g. C1, C2)" />
             <input type="text"   onChange={(event) => preChange(event, "description", Utilities.mapEventTargetValue)} placeholder="Description (optional)" />
             <input type="number" onChange={(event) => preChange(event, "weighting", Utilities.mapEventTargetValueNormalised)} max={100} min={0} step="0.5" defaultValue={50} />
+            <button onClick={this.sendDeletionRequest.bind(this)}>Delete</button>
         </div>
     }
 
@@ -53,11 +54,22 @@ export class CriterionEditorField extends SerializableEditorField
         this.setState({ collapsed: !this.state.collapsed });
     }
 
+    getTitle()
+    {
+        if(!this.props?.title)
+            return "Criterion";
+
+        if(!this.state?.data?.slug)
+            return this.props.title;
+
+        return `${this.state.data.slug}: ${this.props.title}`;
+    }
+
     render()
     {
         return <div className="ui editor-field criterion">
             <header>
-                <h1>{this.props?.title || "Criterion"}</h1>
+                <h1>{this.getTitle()}</h1>
                 <div className="collapse-icon" onClick={this.handleCollapseRequest.bind(this)}>{this.getIcon(this.state.collapsed)}</div>
             </header>
             {this.renderCollapsable(this.state.collapsed)}

@@ -31,6 +31,17 @@ export class SerializableEditorField extends React.Component
         }).bind(this));
     }
 
+    sendDeletionRequest()
+    {
+        if(!this.props?.index)
+            return;
+
+        if(!this.props?.onDeleteRequest)
+            return;
+
+        this.props.onDeleteRequest(this.props.index);
+    }
+
     validate()
     {
         throw Exception("Feature not implemented.");
