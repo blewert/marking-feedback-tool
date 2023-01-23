@@ -1,4 +1,5 @@
 import React from "react";
+import { Utilities } from "../../Utilities.js";
 import { SerializableEditorField } from "./SerializableEditorField.jsx";
 
 
@@ -24,17 +25,6 @@ export class CriterionEditorField extends SerializableEditorField
         return (!!status) ? ("Open") : ("Close");
     }
 
-    onPreChanged(event, key, getValue)
-    {
-        const updatedValue = getValue(event);
-
-        this.setState({ 
-            data: {
-                ...this.state.data,
-                [key]: updatedValue
-            }
-        });
-    }
 
     renderCollapsable(status)
     {
@@ -50,14 +40,11 @@ export class CriterionEditorField extends SerializableEditorField
             return this.onPreChanged(event, key, getValue);
         }).bind(this);        
 
-        const targetValue = (e) => e.target.value;
-        const targetValueNormalise = (e) => +(e.target.value) / 100.0;
-
         return <div className="collapsable" style={styleProps}>
-            <input type="text"   onChange={(event) => preChange(event, "name", targetValue)} placeholder="Name" />
-            <input type="text"   onChange={(event) => preChange(event, "slug", targetValue)} placeholder="Slug (e.g. C1, C2)" />
-            <input type="text"   onChange={(event) => preChange(event, "description", targetValue)} placeholder="Description (optional)" />
-            <input type="number" onChange={(event) => preChange(event, "weighting", targetValueNormalise)} max={100} min={0} step="0.5" defaultValue={50} />
+            <input type="text"   onChange={(event) => preChange(event, "name", Utilities.mapEventTargetValue)} placeholder="Name" />
+            <input type="text"   onChange={(event) => preChange(event, "slug", Utilities.mapEventTargetValue)} placeholder="Slug (e.g. C1, C2)" />
+            <input type="text"   onChange={(event) => preChange(event, "description", Utilities.mapEventTargetValue)} placeholder="Description (optional)" />
+            <input type="number" onChange={(event) => preChange(event, "weighting", Utilities.mapEventTargetValueNormalised)} max={100} min={0} step="0.5" defaultValue={50} />
         </div>
     }
 
@@ -68,8 +55,6 @@ export class CriterionEditorField extends SerializableEditorField
 
     render()
     {
-        console.log(this.validate());
-
         return <div className="ui editor-field criterion">
             <header>
                 <h1>{this.props?.title || "Criterion"}</h1>

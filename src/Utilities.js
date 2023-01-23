@@ -23,4 +23,14 @@ export class Utilities
         
         return array[Utilities.rng(array.length)];
     }
+
+    static mapEventTargetValue(event) 
+    {
+        return event.target.value;
+    }
+
+    static mapEventTargetValueNormalised(event) 
+    {
+        return +(event.target.value) / 100.0;
+    }
 }
