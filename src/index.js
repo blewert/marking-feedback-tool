@@ -2,6 +2,8 @@ import $ from 'jquery';
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { Route, HashRouter, Router, Link } from 'react-router-dom';
+
 //Crg imports
 // import crgData from './config/test-crg.jsx'
 import crgData from './config/rapid-p2.jsx'
@@ -24,6 +26,7 @@ import { SelectManyField, SelectManyFieldMapper } from './components/fields/Sele
 import SelectManyResponseMapper from './responseMappers/SelectManyResponseMapper.jsx';
 import { CRGGradingTool } from './components/CRGGradingTool.jsx';
 import { Utilities } from './Utilities.js';
+import { CRGEditor } from './editor/CRGEditor.jsx';
 
 class App extends React.Component
 {
@@ -185,18 +188,46 @@ class App extends React.Component
 		</div>
 	}
 
-	render()
+	showCRGView()
 	{
-		const id = this.buildIdentifier;
-
 		return <div>
 			{this.generateFormControls()}
 			<CRGGradingTool crg={crgData.crg} onChange={this.updateMarks.bind(this)} />
 			{this.generateFieldsFromCRG()}
 			{/* <SelectManyField title="title" {...this.commonProps} identifier={id("textTest", 0, "selectMany")} choices={["abc", "def", "ghi", "jkl"]} /> */}
 			{/* <TextField title="title" {...this.commonProps} identifier={id("textTest", 0, "text")} /> */}
-			<OutputBox output={this.generateFeedback(this.state.formData)}/>
-		</div>
+			<OutputBox output={this.generateFeedback(this.state.formData)} />
+		</div>;
+	}
+
+	showIndexView()
+	{
+		return <ul>
+			<li><Link to="/crg">Test CRG view</Link></li>
+			<li><Link to="/editor">Test editor</Link></li>
+		</ul>
+	}
+	
+	showEditorView()
+	{
+		return <CRGEditor/>;
+	}
+
+	render()
+	{
+		const id = this.buildIdentifier;
+
+		return <HashRouter>
+			<Route exact path="/">
+				{this.showIndexView()}
+			</Route>
+			<Route exact path="/crg">
+				{this.showCRGView()}
+			</Route>
+			<Route exact path="/editor">
+				{this.showEditorView()}
+			</Route>
+		</HashRouter>
 	}
 }
 
