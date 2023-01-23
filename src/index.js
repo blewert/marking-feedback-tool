@@ -27,6 +27,7 @@ import SelectManyResponseMapper from './responseMappers/SelectManyResponseMapper
 import { CRGGradingTool } from './components/CRGGradingTool.jsx';
 import { Utilities } from './Utilities.js';
 import { CRGEditor } from './editor/CRGEditor.jsx';
+import { FieldsEditor } from './editor/FieldsEditor.jsx';
 
 class App extends React.Component
 {
@@ -213,6 +214,10 @@ class App extends React.Component
 		return <div>
 			<h1>CRG editor</h1>
 			<CRGEditor/>
+
+			<h1>Fields editor</h1>
+			<FieldsEditor/>
+
 		</div>
 	}
 
