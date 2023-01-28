@@ -38,7 +38,7 @@ export class FieldsEditor extends SerializableEditorField
     mapToElementType(data, index)
     {
         if(data.type == "text")
-            return <EditorTextField key={index} onUpdate={null}/>;
+            return <EditorTextField key={index} index={index} onUpdate={null}/>;
         
         return <div key={index}>null</div>;
     }
@@ -50,7 +50,7 @@ export class FieldsEditor extends SerializableEditorField
 
     render()
     {
-        console.log(this.state.data.elements);
+        // console.log(this.state.data.elements);
 
         return <div>
             {this.renderAddComponentsControl()}
