@@ -1,0 +1,41 @@
+{
+    "criterions": [
+        {
+            "code": "C1",
+            "name": "Game",
+            "weighting": 0.6
+        },
+
+        {
+            "code": "C2",
+            "name": "Forum posts",
+            "weighting": 0.4
+        }
+    ],
+
+    "feedbackItems": [
+        {
+            "type": "multichoice",
+            "slug": ""
+        },
+        
+        {
+            "type": "checked",
+            "slug": "no-build",
+            "name": "Has submitted no build?",
+            "defaults": [
+                "You have not submitted a working build with this submission."
+            ]
+        },
+
+        {
+            "type": "checked",
+            "slug": "no-source",
+            "name": "Has submitted no project source?",
+            "defaults": [
+                "You have not submitted your project source with this submission.",
+                "The project source is not included with your submission."
+            ]
+        }
+    ]
+}

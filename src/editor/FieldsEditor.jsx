@@ -1,4 +1,5 @@
 import React from 'react'
+import { EditorTextField } from './fields/EditorTextField.jsx';
 import { SerializableEditorField } from './serializables/SerializableEditorField.jsx';
 
 
@@ -37,7 +38,7 @@ export class FieldsEditor extends SerializableEditorField
     mapToElementType(data, index)
     {
         if(data.type == "text")
-            return <div key={index}>text lol: {index}</div>
+            return <EditorTextField key={index} onUpdate={null}/>;
         
         return <div key={index}>null</div>;
     }
