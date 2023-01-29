@@ -1,5 +1,6 @@
 import React from 'react'
 import { EditorTextField } from './fields/EditorTextField.jsx';
+import { EditorSelectOneField } from './fields/EditorSelectOneField.jsx';
 import { SerializableEditorField } from './serializables/SerializableEditorField.jsx';
 
 
@@ -32,6 +33,7 @@ export class FieldsEditor extends SerializableEditorField
     {
         return <div className="add-components">
             <button onClick={(() => this.addNewField("text")).bind(this)}>New text field</button>
+            <button onClick={(() => this.addNewField("selectOne")).bind(this)}>New select-one field</button>
         </div>
     }
 
@@ -47,7 +49,7 @@ export class FieldsEditor extends SerializableEditorField
                 ...this.state.data,
                 elements: elementsCopy
             }
-        }, () => console.log(this.state.data));
+        });
     }
 
     onFieldRequestDelete(index)
@@ -60,7 +62,7 @@ export class FieldsEditor extends SerializableEditorField
                 ...this.state.data,
                 elements: elementsCopy
             }
-        }, () => console.log(this.state.data.elements));
+        });
     }
 
     mapToElementType(data, index)
@@ -73,6 +75,9 @@ export class FieldsEditor extends SerializableEditorField
 
         if(data.type == "text")
             return <EditorTextField key={data.keyIndex} {...commonProps} />;
+
+        if(data.type == "selectOne")
+            return <EditorSelectOneField key={data.keyIndex} {...commonProps} />;
         
         return <div key={index}>null</div>;
     }
