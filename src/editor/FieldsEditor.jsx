@@ -18,7 +18,7 @@ export class FieldsEditor extends SerializableEditorField
     addNewField(type)
     {
         let elementsCopy = this.state.data.elements;
-        elementsCopy.push({ type: type, data: {} });
+        elementsCopy.push({ type: type, keyIndex: Math.random(), data: {} });
 
         this.setState({
             data: {
@@ -35,10 +35,34 @@ export class FieldsEditor extends SerializableEditorField
         </div>
     }
 
+    onUpdate()
+    {
+        console.log("update")
+    }
+
+    onFieldRequestDelete(index)
+    {
+        let elementsCopy = this.state.data.elements;
+        elementsCopy.splice(index, 1);
+
+        this.setState({
+            data: {
+                ...this.state.data,
+                elementsCopy
+            }
+        }, () => console.log(this.state.data.elements));
+    }
+
     mapToElementType(data, index)
     {
+        const commonProps = {
+            onUpdate: this.onUpdate.bind(this),
+            onDeleteRequest: this.onFieldRequestDelete.bind(this),
+            index: index
+        };
+
         if(data.type == "text")
-            return <EditorTextField key={index} index={index} onUpdate={null}/>;
+            return <EditorTextField key={data.keyIndex} {...commonProps} />;
         
         return <div key={index}>null</div>;
     }

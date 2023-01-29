@@ -13,7 +13,7 @@ export class EditorField extends React.Component
 
     onRequestDelete()
     {
-        this.props?.onRequestDelete();
+        this.props?.onDeleteRequest(this.props.index);
     }
 
     onRequestMoveIndex()
@@ -34,6 +34,11 @@ export class EditorField extends React.Component
             return <p onClick={this.toggleCollapsed.bind(this)}>Open</p>
 
         return <p onClick={this.toggleCollapsed.bind(this)}>Closed</p>
+    }
+
+    getDeleteButton()
+    {
+        return <button onClick={this.onRequestDelete.bind(this)}>Delete</button>;
     }
 
     getCollapsedStyleProps()

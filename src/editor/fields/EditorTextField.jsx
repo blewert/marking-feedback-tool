@@ -90,8 +90,9 @@ export class EditorTextField extends EditorField
 
         return <div className="ui editor-field text">
             <header>
-                <h2>Text editor field</h2>
+                <h2>{this.state.data.key || "Text field"}</h2>
                 {this.getCollapseButton()}
+                {this.getDeleteButton()}
             </header>
             <div className="content" style={this.getCollapsedStyleProps()}>
                 <div className="row">
