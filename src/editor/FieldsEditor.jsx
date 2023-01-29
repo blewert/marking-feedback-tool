@@ -18,12 +18,12 @@ export class FieldsEditor extends SerializableEditorField
     addNewField(type)
     {
         let elementsCopy = this.state.data.elements;
-        elementsCopy.push({ type: type, keyIndex: Math.random(), data: {} });
+        elementsCopy.push({ type: type, keyIndex: Math.random(), validated: false, data: {} });
 
         this.setState({
             data: {
                 ...this.state.data,
-                elementsCopy
+                elements: elementsCopy
             }
         })
     }
@@ -35,9 +35,19 @@ export class FieldsEditor extends SerializableEditorField
         </div>
     }
 
-    onUpdate()
+    onUpdate(index, data, validated)
     {
-        console.log("update")
+        let elementsCopy = this.state.data.elements;
+        
+        elementsCopy[index].data = data;
+        elementsCopy[index].validated = validated;
+
+        this.setState({
+            data: {
+                ...this.state.data,
+                elements: elementsCopy
+            }
+        }, () => console.log(this.state.data));
     }
 
     onFieldRequestDelete(index)
@@ -48,7 +58,7 @@ export class FieldsEditor extends SerializableEditorField
         this.setState({
             data: {
                 ...this.state.data,
-                elementsCopy
+                elements: elementsCopy
             }
         }, () => console.log(this.state.data.elements));
     }

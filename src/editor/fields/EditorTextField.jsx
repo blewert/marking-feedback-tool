@@ -66,9 +66,10 @@ export class EditorTextField extends EditorField
                 ...this.state.data,
                 [key]: value
             }
-        }, () => {
-            console.log(this.serialize());
-        });
+        }, (() => 
+        {
+            this.props?.onUpdate(this.props.index, this.serialize(), this.validate());
+        }).bind(this));
     }
 
     renderTemplateBox()
