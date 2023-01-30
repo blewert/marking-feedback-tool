@@ -211,14 +211,14 @@ class App extends React.Component
 	
 	showEditorView()
 	{
-		return <div>
-			<h1>CRG editor</h1>
+		return <main>
+			<h1 className="title">CRG editor</h1>
 			<CRGEditor/>
 
-			<h1>Fields editor</h1>
+			<h1 className="title">Fields editor</h1>
 			<FieldsEditor/>
 
-		</div>
+		</main>
 	}
 
 	render()
