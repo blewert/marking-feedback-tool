@@ -107,7 +107,9 @@ export class CRGEditor extends SerializableEditorField
     {
         return <div>
             {this.renderCriteria()}
-            <button onClick={this.handleAddNewCriterion.bind(this)}>+</button>
+            <div className="bottom-controls">
+                <button onClick={this.handleAddNewCriterion.bind(this)}>Add new criterion</button>
+            </div>
         </div>
     }
 }

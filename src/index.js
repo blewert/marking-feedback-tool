@@ -11,7 +11,7 @@ import crgData from './config/rapid-p2.jsx'
 //Sass
 import './sass/main.sass';
 
-//Components
+//Componentster
 import { CheckboxField } from './components/fields/CheckboxField.jsx'
 import { SelectOneField, SelectOneFieldMapper } from './components/fields/SelectOneField.jsx';
 import { TextField } from './components/fields/TextField.jsx';

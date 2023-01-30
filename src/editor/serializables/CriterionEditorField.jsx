@@ -41,11 +41,17 @@ export class CriterionEditorField extends SerializableEditorField
         }).bind(this);        
 
         return <div className="collapsable" style={styleProps}>
-            <input type="text"   onChange={(event) => preChange(event, "name", Utilities.mapEventTargetValue)} placeholder="Name" />
-            <input type="text"   onChange={(event) => preChange(event, "slug", Utilities.mapEventTargetValue)} placeholder="Slug (e.g. C1, C2)" />
-            <input type="text"   onChange={(event) => preChange(event, "description", Utilities.mapEventTargetValue)} placeholder="Description (optional)" />
-            <input type="number" onChange={(event) => preChange(event, "weighting", Utilities.mapEventTargetValueNormalised)} max={100} min={0} step="0.5" defaultValue={50} />
-            <button onClick={this.sendDeletionRequest.bind(this)}>Delete</button>
+            <div className="row">
+                <input type="text"   onChange={(event) => preChange(event, "name", Utilities.mapEventTargetValue)} placeholder="Criterion name" />
+                <input type="text"   onChange={(event) => preChange(event, "slug", Utilities.mapEventTargetValue)} placeholder="Slug (e.g. C1, C2)" />
+            </div>
+            <div className="row">
+                <input type="text"   onChange={(event) => preChange(event, "description", Utilities.mapEventTargetValue)} placeholder="Criterion description (optional)" />
+                <input type="number" onChange={(event) => preChange(event, "weighting", Utilities.mapEventTargetValueNormalised)} max={100} min={0} step="0.5"  placeholder="Weight (%)" />
+            </div>
+            <div className="bottom-row">
+                <button onClick={this.sendDeletionRequest.bind(this)}>Delete</button>
+            </div>
         </div>
     }
 
@@ -62,7 +68,10 @@ export class CriterionEditorField extends SerializableEditorField
         if(!this.state?.data?.slug)
             return this.props.title;
 
-        return `${this.state.data.slug}: ${this.props.title}`;
+        if (!this.state.data.weighting)
+            return `${this.state.data.slug}: ${this.props.title}`;
+
+        return `${this.state.data.slug}: ${this.props.title} (${Math.floor(this.state.data.weighting * 100)}%)`;
     }
 
     render()
