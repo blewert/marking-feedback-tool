@@ -31,9 +31,9 @@ export class EditorField extends React.Component
     getCollapseButton()
     {
         if(this.state.collapsed)
-            return <p onClick={this.toggleCollapsed.bind(this)}>Open</p>
+            return <div className="collapse-icon" onClick={this.toggleCollapsed.bind(this)}>Open</div>
 
-        return <p onClick={this.toggleCollapsed.bind(this)}>Closed</p>
+        return <div className="collapse-icon" onClick={this.toggleCollapsed.bind(this)}>Closed</div>
     }
 
     getDeleteButton()

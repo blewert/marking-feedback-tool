@@ -79,7 +79,7 @@ export class EditorTextField extends EditorField
         if(this.state.data.insertIntoTemplate)
             return <div className="row indented">
                 <label>Insert the templates below (one per line). Use $1 as a guide to where user-entered text should go.</label>
-                <textarea onChange={(event) => onUpdate(event, "templates", "lineDelimTextarea")}></textarea>
+                <textarea onChange={(event) => onUpdate(event, "templates", "lineDelimTextarea")} placeholder="e.g: You have added $1 to your project."></textarea>
             </div>
 
         return null;
@@ -93,7 +93,6 @@ export class EditorTextField extends EditorField
             <header>
                 <h2>{this.state.data.key || "Text field"}</h2>
                 {this.getCollapseButton()}
-                {this.getDeleteButton()}
             </header>
             <div className="content" style={this.getCollapsedStyleProps()}>
                 <div className="row">
@@ -112,6 +111,10 @@ export class EditorTextField extends EditorField
                 </div>
 
                 {this.renderTemplateBox()}
+
+                <div className="bottom-row">
+                    {this.getDeleteButton()}
+                </div>
             </div>
         </div>
     }
