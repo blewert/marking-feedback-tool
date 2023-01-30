@@ -174,7 +174,7 @@ export class EditorSelectOneField extends EditorField
 
                 {this.renderOptions()}
                 
-                <div className="bottom-controls">
+                <div className="bottom-row">
                     {this.getDeleteButton()}
                 </div>
             </div>
