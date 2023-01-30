@@ -44,14 +44,14 @@ export class EditorField extends React.Component
     renderFieldControls()
     {
         return <>
-            <div className="button">
-                <button onClick={() => this.onRequestIndexShift(-1)}>&#8593;</button>
+            <div className="button grow">
+                <button title="Delete field" onClick={this.onRequestDelete.bind(this)}>&#10007;</button>
             </div>
             <div className="button">
-                <button onClick={() => this.onRequestIndexShift(1)}>&#8595;</button>
+                <button title="Move field up" onClick={() => this.onRequestIndexShift(-1)}>&#8593;</button>
             </div>
             <div className="button">
-                <button onClick={this.onRequestDelete.bind(this)}>&#10007;</button>
+                <button title="Move field down" onClick={() => this.onRequestIndexShift(1)}>&#8595;</button>
             </div>
         </>
     }

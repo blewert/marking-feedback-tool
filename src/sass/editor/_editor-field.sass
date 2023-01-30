@@ -125,13 +125,15 @@ h1.title:not(:first-child)
 
         .controls
             display: flex
-            flex-direction: row
+            flex-direction: column
             align-items: baseline
-            min-width: 50px
             padding-left: 1rem
 
             .button
                 text-align: right
+                
+                &.grow
+                    flex-grow: 1
 
             button
                 padding: 0.25rem
@@ -139,6 +141,8 @@ h1.title:not(:first-child)
                 margin: 0
                 border: 0
                 font-size: 14pt
-                display: inline-block
+                display: block
+
+                
 
     
