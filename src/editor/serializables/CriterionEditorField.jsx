@@ -22,7 +22,7 @@ export class CriterionEditorField extends SerializableEditorField
 
     getIcon(status)
     {
-        return (!!status) ? ("Open") : ("Close");
+        return (!!status) ? (<span>&#11207;</span>) : (<span>&#11206;</span>);
     }
 
 

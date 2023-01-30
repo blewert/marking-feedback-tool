@@ -142,7 +142,9 @@ export class EditorSelectOneField extends EditorField
                     <h4>{x.title || `Option ${i+1}`}</h4>
                     <input onChange={(event) => onUpdate(event, i, "title", "text")} type="text" value={x.title} placeholder="Enter option title..." />
                     <textarea onChange={(event) => onUpdate(event, i, "selectOptions", "lineDelimTextArea")}  placeholder="Enter possible feedback items (one per line)"></textarea>
-                    <button onClick={(() => this.requestOptionDelete(i)).bind(this)}>Delete option</button>
+                    <footer>
+                        <button onClick={(() => this.requestOptionDelete(i)).bind(this)}>Delete option</button>
+                    </footer>
                 </div>
             })}
             <button onClick={this.handleAddNewOption.bind(this)}>Add new option</button>
@@ -154,11 +156,10 @@ export class EditorSelectOneField extends EditorField
     {
         const onUpdate = ((event, name, type) => this.onPreUpdate(event, name, type)).bind(this);
 
-        return <div className="ui select-field text">
+        return <div className="ui editor-field select-field">
             <header>
                 <h2>{this.state.data.key || "Select one field"}</h2>
                 {this.getCollapseButton()}
-                {this.getDeleteButton()}
             </header>
             <div className="content" style={this.getCollapsedStyleProps()}>
                 <div className="row">
@@ -172,6 +173,10 @@ export class EditorSelectOneField extends EditorField
                 </div>
 
                 {this.renderOptions()}
+                
+                <div className="bottom-controls">
+                    {this.getDeleteButton()}
+                </div>
             </div>
         </div>
     }

@@ -1,0 +1,49 @@
+
+
+.options
+    display: flex
+    flex-direction: column
+
+    .option
+        background-color: $fg-color-light-7
+        padding: 1rem
+        border-radius: 0.5rem
+        position: relative
+
+        &:not(:last-child)
+            margin-bottom: 1rem
+
+        &:last-child
+            margin-bottom: 2rem
+        
+        h3, h4
+            margin: 0
+            padding: 0
+            margin-bottom: 1rem
+
+        input
+            background-color: $fg-color-light-6
+            color: $fg-color-light-1
+            margin-bottom: 1rem
+
+        input, textarea
+            display: block
+
+        textarea
+            background-color: $fg-color-light-6
+            color: $fg-color-light-1
+            border: 0
+            padding: 1rem
+            width: 100%
+            border-radius: 0.25rem
+            min-height: 150px
+        
+        footer
+            display: flex
+            flex-direction: row
+            justify-content: flex-end
+            margin-top: 1rem
+
+            button
+                background-color: $fg-color-light-6
+                color: $fg-color-light-3
