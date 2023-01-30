@@ -96,7 +96,7 @@ export class FieldsEditor extends SerializableEditorField
     {
         // console.log(this.state.data.elements);
 
-        return <div>
+        return <div className="fields">
             {this.renderElements()}
             {this.renderAddComponentsControl()}
         </div>

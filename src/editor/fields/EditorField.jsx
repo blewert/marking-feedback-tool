@@ -36,9 +36,24 @@ export class EditorField extends React.Component
         return <div className="collapse-icon" onClick={this.toggleCollapsed.bind(this)}>&#11206;</div>
     }
 
-    getDeleteButton()
+    onRequestIndexShift(offset)
     {
-        return <button onClick={this.onRequestDelete.bind(this)}>Delete</button>;
+        console.log(this.props.index + offset);
+    }
+
+    renderFieldControls()
+    {
+        return <>
+            <div className="button">
+                <button onClick={() => this.onRequestIndexShift(-1)}>&#8593;</button>
+            </div>
+            <div className="button">
+                <button onClick={() => this.onRequestIndexShift(1)}>&#8595;</button>
+            </div>
+            <div className="button">
+                <button onClick={this.onRequestDelete.bind(this)}>&#10007;</button>
+            </div>
+        </>
     }
 
     getCollapsedStyleProps()

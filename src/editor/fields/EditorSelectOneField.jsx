@@ -156,28 +156,28 @@ export class EditorSelectOneField extends EditorField
     {
         const onUpdate = ((event, name, type) => this.onPreUpdate(event, name, type)).bind(this);
 
-        return <div className="ui editor-field select-field">
-            <header>
-                <h2>{this.state.data.key || "Select one field"}</h2>
-                {this.getCollapseButton()}
-            </header>
-            <div className="content" style={this.getCollapsedStyleProps()}>
-                <div className="row">
-                    <label>Key</label>
-                    <input type="text" onChange={(event) => onUpdate(event, "key", "text")} />
-                </div>
+        return <div className="wrapper">
+                <div className="ui editor-field select-field">
+                    <header>
+                        <h2>{this.state.data.key || "Select one field"}</h2>
+                        {this.getCollapseButton()}
+                    </header>
+                    <div className="content" style={this.getCollapsedStyleProps()}>
+                        <div className="row">
+                            <label>Key</label>
+                            <input type="text" onChange={(event) => onUpdate(event, "key", "text")} />
+                        </div>
 
-                <div className="row">
-                    <label>Title</label>
-                    <input type="text" onChange={(event) => onUpdate(event, "title", "text")} />
+                        <div className="row">
+                            <label>Title</label>
+                            <input type="text" onChange={(event) => onUpdate(event, "title", "text")} />
+                        </div>
+                        {this.renderOptions()}                       
+                    </div>
                 </div>
-
-                {this.renderOptions()}
-                
-                <div className="bottom-row">
-                    {this.getDeleteButton()}
+                <div className="controls">
+                    {this.renderFieldControls()}
                 </div>
-            </div>
         </div>
     }
 }

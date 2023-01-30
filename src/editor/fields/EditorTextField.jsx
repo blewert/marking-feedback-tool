@@ -89,32 +89,33 @@ export class EditorTextField extends EditorField
     {
         const onUpdate = ((event, name, type) => this.onPreUpdate(event, name, type)).bind(this);
 
-        return <div className="ui editor-field text">
-            <header>
-                <h2>{this.state.data.key || "Text field"}</h2>
-                {this.getCollapseButton()}
-            </header>
-            <div className="content" style={this.getCollapsedStyleProps()}>
-                <div className="row">
-                    <label>Key</label>
-                    <input type="text" onChange={(event) => onUpdate(event, "key", "text")} />
-                </div>
+        return <div className="wrapper">
+            <div className="ui editor-field text">
+                <header>
+                    <h2>{this.state.data.key || "Text field"}</h2>
+                    {this.getCollapseButton()}
+                </header>
+                <div className="content" style={this.getCollapsedStyleProps()}>
+                    <div className="row">
+                        <label>Key</label>
+                        <input type="text" onChange={(event) => onUpdate(event, "key", "text")} />
+                    </div>
 
-                <div className="row">
-                    <label>Title</label>
-                    <input type="text" onChange={(event) => onUpdate(event, "title", "text")} />
-                </div>
+                    <div className="row">
+                        <label>Title</label>
+                        <input type="text" onChange={(event) => onUpdate(event, "title", "text")} />
+                    </div>
 
-                <div className="row">
-                    <label>Insert into template?</label>
-                    <input type="checkbox" onChange={(event) => onUpdate(event, "insertIntoTemplate", "checkbox")} />
-                </div>
+                    <div className="row">
+                        <label>Insert into template?</label>
+                        <input type="checkbox" onChange={(event) => onUpdate(event, "insertIntoTemplate", "checkbox")} />
+                    </div>
 
-                {this.renderTemplateBox()}
-
-                <div className="bottom-row">
-                    {this.getDeleteButton()}
+                    {this.renderTemplateBox()}
                 </div>
+            </div>
+            <div className="controls">
+                {this.renderFieldControls()}
             </div>
         </div>
     }

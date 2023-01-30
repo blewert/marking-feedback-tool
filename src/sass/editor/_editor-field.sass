@@ -109,3 +109,36 @@ h1.title:not(:first-child)
 
     .row.onefr-onefr
         grid-template-columns: 1fr 1fr
+
+
+.fields
+
+    .wrapper
+        display: flex
+        flex-direction: row
+        
+        &:not(:last-child)
+            margin-top: 1rem
+    
+        .editor-field
+            flex-grow: 1
+
+        .controls
+            display: flex
+            flex-direction: row
+            align-items: baseline
+            min-width: 50px
+            padding-left: 1rem
+
+            .button
+                text-align: right
+
+            button
+                padding: 0.25rem
+                text-align: center
+                margin: 0
+                border: 0
+                font-size: 14pt
+                display: inline-block
+
+    
