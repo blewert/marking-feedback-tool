@@ -2,6 +2,7 @@ import React from 'react'
 import { EditorTextField } from './fields/EditorTextField.jsx';
 import { EditorSelectOneField } from './fields/EditorSelectOneField.jsx';
 import { SerializableEditorField } from './serializables/SerializableEditorField.jsx';
+import { EditorCheckboxField } from './fields/EditorCheckboxField.jsx';
 
 
 export class FieldsEditor extends SerializableEditorField 
@@ -34,6 +35,7 @@ export class FieldsEditor extends SerializableEditorField
         return <div className="add-components">
             <button onClick={(() => this.addNewField("text")).bind(this)}>New text field</button>
             <button onClick={(() => this.addNewField("selectOne")).bind(this)}>New select-one field</button>
+            <button onClick={(() => this.addNewField("checkbox")).bind(this)}>New checkbox field</button>
         </div>
     }
 
@@ -78,7 +80,10 @@ export class FieldsEditor extends SerializableEditorField
 
         if(data.type == "selectOne")
             return <EditorSelectOneField key={data.keyIndex} {...commonProps} />;
-        
+
+        if(data.type == "checkbox")
+            return <EditorCheckboxField key={data.keyIndex} {...commonProps} />;
+
         return <div key={index}>null</div>;
     }
 

@@ -49,8 +49,18 @@ export class EditorField extends React.Component
         return { "display": "none" };
     }
 
+    deserialize(obj)
+    {
+        //Basic deserialize: map object keys and values
+        this.setState({ 
+            ...this.state.data,
+            data: obj
+        });
+    }
+
     serialize()
     {
+        //Just return a stringified
         return JSON.stringify(this.state.data);
     }
 
