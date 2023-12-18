@@ -6,7 +6,7 @@ import { Route, HashRouter, Router, Link } from 'react-router-dom';
 
 //Crg imports
 // import crgData from './config/test-crg.jsx'
-import crgData from './config/rapid-p3.jsx'
+import crgData from './config/prog-fun-a1.jsx'
 
 //Sass
 import './sass/main.sass';
