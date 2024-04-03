@@ -6,7 +6,8 @@ import { Route, HashRouter, Router, Link } from 'react-router-dom';
 
 //Crg imports
 // import crgData from './config/test-crg.jsx'
-import crgData from './config/prog-fun-a1.jsx'
+// import crgData from './config/prog-fun-a1.jsx'
+import crgData from './config/ai-a1.jsx'
 
 //Sass
 import './sass/main.sass';
@@ -121,7 +122,8 @@ class App extends React.Component
 		if (this.state.marks.length == crgData.crg.criteria.length)
 		{
 			const markComponents = this.state.marks.map(x => `(${x.slug}: ${x.mark}%)`);
-			const finalMark = this.state.marks.reduce((a, b) => (a.weightedMark + b.weightedMark));
+			const finalMark = this.state.marks.map(x => x.weightedMark).reduce((a, b) => (a + b));
+
 
 			markString = `\n\n` + markComponents.join(" + ") + ` = ${finalMark}%`;
 		}

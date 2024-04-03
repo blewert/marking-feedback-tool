@@ -25,7 +25,7 @@ export class CRGGradingTool extends React.Component
 
     calculateFinalGrade()
     {
-        return this.marks.reduce((a, b) => a.weightedMark + b.weightedMark);
+        return this.marks.map(x => x.weightedMark).reduce((a, b) => a + b);
     }
 
     render()
