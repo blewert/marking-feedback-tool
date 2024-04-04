@@ -123,8 +123,12 @@ class App extends React.Component
 		if (this.state.marks.length == crgData.crg.criteria.length)
 		{
 			const markComponents = this.state.marks.map(x => `(${x.slug}: ${x.mark}%)`);
-			const finalMark = this.state.marks.map(x => x.weightedMark).reduce((a, b) => (a + b));
+			let finalMark = this.state.marks.map(x => x.weightedMark).reduce((a, b) => (a + b));
 
+			finalMark = Math.ceil(finalMark);
+
+			if(finalMark % 10 == 9)
+				finalMark += 1;
 
 			markString = `\n\n` + markComponents.join(" + ") + ` = ${finalMark}%`;
 		}

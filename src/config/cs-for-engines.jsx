@@ -123,6 +123,20 @@ export default {
         },
 
         {
+            "key": "mechanics",
+            "type": "text",
+            "index": 0.5,
+            "title": "Mechanics include...",
+            "fieldData": {
+                "insertIntoTemplate": true,
+                "templates": [
+                    "Implemented mechanics in this project include $1.",
+                    "Mechanics implemented include $1."
+                ]
+            }
+        },
+
+        {
             "key": "codeQuality",
             "type": "selectOne",
             "index": 1,
