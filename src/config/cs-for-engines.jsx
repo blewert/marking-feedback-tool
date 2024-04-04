@@ -99,7 +99,7 @@ export default {
                     {
                         "title": "A functional game, using the framework",
                         "feedback": [
-                            "You have submitted a functional Unity game, using the supplied framework as a solid basis on.",
+                            "You have submitted a functional Unity game, using the supplied framework as a solid basis to build atop.",
                             "A functional Unity game has been submitted, which uses the supplied framework."
                         ]
                     }
