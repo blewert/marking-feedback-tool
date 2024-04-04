@@ -7,7 +7,8 @@ import { Route, HashRouter, Router, Link } from 'react-router-dom';
 //Crg imports
 // import crgData from './config/test-crg.jsx'
 // import crgData from './config/prog-fun-a1.jsx'
-import crgData from './config/ai-a1.jsx'
+// import crgData from './config/ai-a1.jsx'
+import crgData from './config/cs-for-engines.jsx'
 
 //Sass
 import './sass/main.sass';
